@@ -1,17 +1,17 @@
 package Demo;
-
 import java.io.*;
 import java.util.*;
 
 class Allfiles{
-	  static int j=0;
 	 
 	 
 ArrayList<String> al1=new ArrayList<String>();
 ArrayList<String> al2=new ArrayList<String>();
-	void Listing(ArrayList<String> Dir)throws IOException{
+Iterator<String> ip = al2.iterator();
+
+void Listing(String Dir)throws IOException{
 		 FileWriter  Writer=new FileWriter("D:/Java Programs/Acadview/CSV.csv");
-		File f3=new File("D:/Java Programs/Acadview/");
+		File f3=new File(Dir);
 	  String nm[] = f3.list();
 	  
 	  System.out.println("list of Files & Sub-Directories of '.'");
@@ -19,29 +19,35 @@ ArrayList<String> al2=new ArrayList<String>();
 	  for(int i=0;i < nm.length ;i++)
 	  {
 	      System.out.print(nm[i]);
-	      File f4 = new File("D:/Java Programs/Acadview/"+nm[i]);
+	      File f4 = new File(Dir+"/"+nm[i]);
 	      if(f4.isFile() == true){
-	    	System.out.println(" It is a File");
+	  	System.out.println(" It is a File");
 	    	String dir1=f4.getAbsolutePath();
 	        Writer.append(dir1);
 	        Writer.append('\n');
 	        al1.add(dir1);
+	        
 	      }
 	      else{
 	//      System.out.println(" It is a Directory");
 	      String dir2=f4.getAbsolutePath();
-	     
 	      al2.add(dir2);
+	      
+	      Listing(dir2);
 	     }
-		}System.out.println(al2);
-
-		while(al2[j]!=null)
-		{
-			Listing(al2[j]);
-			al2.remove(j);
-			j++;
-			
 		}
+
+	  Writer.close();
+	
+
+	  
+	  
+//	while(ip.hasNext())
+//	{
+//		Listing(ip.next());
+//
+//	}
+//		System.out.println(al2);
 		
 		}
 }
