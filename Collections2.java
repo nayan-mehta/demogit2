@@ -6,6 +6,8 @@ public class Collections2 {
 
 	public static void main(String[] args) {
 		
+
+		
 		//Vector Basics
 //		Vector v = new Vector();
 //       
